@@ -130,3 +130,24 @@ async function createTimetable(time) {
 }
 
 module.exports.createTimetable = createTimetable;
+
+
+const updateAirlineRec =
+    `update PR_AIRLINE
+  set TITLE = :title,
+    AVERAGE_TICKET_PRICE = :average_ticket_price,
+    RATING = :rating,
+  where ID_AIRLINE = :id_airline`;
+
+async function updateAirline(air) {
+    const airline = Object.assign({}, air);
+    const result = await database.simpleExecute(updateAirlineRec, airline);
+
+    if (result.rowsAffected && result.rowsAffected === 1) {
+        return airline;
+    } else {
+        return null;
+    }
+}
+
+module.exports.updateAirline = updateAirline;

@@ -32,9 +32,9 @@ router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
 
 router.route('/admin/newairline/').post(flight.admAddAirline);
 router.route('/admin/newairport/').post(flight.admAddAirport);
-router.route('/admin/newtimetable/').post(flight.admAddTimetable);
+router.route('/admin/newtimetable/').post(flight.admAddTimtable);
 
-//router.route('/admin/updairline/').put();
+router.route('/admin/updairline/').put(flight.updAirline);
 //router.route('/admin/updairport/').put();
 //router.route('/admin/updtimetable/').put();
 

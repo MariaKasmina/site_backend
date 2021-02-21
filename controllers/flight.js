@@ -73,10 +73,12 @@ function getAirportFromRec(req) {
 }
 
 function getTimetableFromRec(req) {
+    let ddate = new Date(req.body.date_departure);
+    let adate = new Date(req.body.date_arrival);
     return {
         ID_TIMETABLE: req.body.id,
-        DEPARTURE_DATE: req.body.date_departure,
-        ARRIVAL_DATE: req.body.date_arrival,
+        DEPARTURE_DATE: ddate,
+        ARRIVAL_DATE: adate,
         ID_AIRPORT_DEPARTURE: req.body.id_airport_departure,
         ID_AIRPORT_ARRIVAL: req.body.id_airport_arrival,
     };
@@ -112,6 +114,30 @@ async function admAddTimtable(req,res,next){
     }
 }
 
+async function updAirline(req, res, next) {
+    try {
+        let airline = getAirlineFromRec(req);
+        // number of ailine in db
+        airline.ID_AIRLINE = parseInt(req.body.id, 10);
+
+        airline = await airline.updateAirline(airline);
+
+        if (airline !== null) {
+            res.status(200).json(airline);
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+module.exports.updAirline = updAirline;
+
+
+
+
+
 module.exports = {
     getInfoAboutFlight,
     getInfoAboutAirlineById,
@@ -120,4 +146,5 @@ module.exports = {
     admAddAirline,
     admAddAirport,
     admAddTimtable,
+    updAirline
 }
