@@ -35,8 +35,8 @@ router.route('/admin/newairport/').post(flight.admAddAirport);
 router.route('/admin/newtimetable/').post(flight.admAddTimtable);
 
 router.route('/admin/updairline/').put(flight.updAirline);
-//router.route('/admin/updairport/').put();
-//router.route('/admin/updtimetable/').put();
+router.route('/admin/updairport/').put(flight.updAirport);
+router.route('/admin/updtimetable/').put(flight.updTimetable);
 
 //router.route('/admin/delairline/').delete();
 //router.route('/admin/delairport/').delete();

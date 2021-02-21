@@ -80,7 +80,7 @@ function getTimetableFromRec(req) {
         DEPARTURE_DATE: ddate,
         ARRIVAL_DATE: adate,
         ID_AIRPORT_DEPARTURE: req.body.id_airport_departure,
-        ID_AIRPORT_ARRIVAL: req.body.id_airport_arrival,
+        ID_AIRPORT_ARRIVAL: req.body.id_airport_arrival
     };
 }
 
@@ -117,13 +117,10 @@ async function admAddTimtable(req,res,next){
 async function updAirline(req, res, next) {
     try {
         let airline = getAirlineFromRec(req);
-        // number of ailine in db
-        airline.ID_AIRLINE = parseInt(req.body.id, 10);
+        let p = await fligth.updateAirline(airline);
 
-        airline = await airline.updateAirline(airline);
-
-        if (airline !== null) {
-            res.status(200).json(airline);
+        if (p !== null) {
+            res.status(200).json(p);
         } else {
             res.status(404).end();
         }
@@ -132,10 +129,35 @@ async function updAirline(req, res, next) {
     }
 }
 
-module.exports.updAirline = updAirline;
+async function updAirport(req, res, next) {
+    try {
+        let airline = getAirportFromRec(req);
+        let p = await fligth.updateAirport(airline);
 
+        if (p !== null) {
+            res.status(200).json(p);
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
 
+async function updTimetable(req, res, next) {
+    try {
+        let timetable = getTimetableFromRec(req);
+        let p = await fligth.updateTimetable(timetable);
 
+        if (p !== null) {
+            res.status(200).json(p);
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
 
 
 module.exports = {
@@ -146,5 +168,7 @@ module.exports = {
     admAddAirline,
     admAddAirport,
     admAddTimtable,
-    updAirline
+    updAirline,
+    updAirport,
+    updTimetable
 }

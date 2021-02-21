@@ -134,10 +134,10 @@ module.exports.createTimetable = createTimetable;
 
 const updateAirlineRec =
     `update PR_AIRLINE
-  set TITLE = :title,
-    AVERAGE_TICKET_PRICE = :average_ticket_price,
-    RATING = :rating,
-  where ID_AIRLINE = :id_airline`;
+  set TITLE = :TITLE,
+    AVERAGE_TICKET_PRICE = :AVERAGE_TICKET_PRICE,
+    RATING = :RATING
+  where ID_AIRLINE = :ID_AIRLINE`;
 
 async function updateAirline(air) {
     const airline = Object.assign({}, air);
@@ -151,3 +151,44 @@ async function updateAirline(air) {
 }
 
 module.exports.updateAirline = updateAirline;
+
+const updateAirportRec =
+    `update PR_AIRPORT
+  set TITLE = :TITLE,
+    COUNTRY = :COUNTRY,
+    CITY = :CITY
+  where ID_AIRPORT = :ID_AIRPORT`;
+
+async function updateAirport(air) {
+    const airport = Object.assign({}, air);
+    const result = await database.simpleExecute(updateAirportRec, airport);
+
+    if (result.rowsAffected && result.rowsAffected === 1) {
+        return airport;
+    } else {
+        return null;
+    }
+}
+
+module.exports.updateAirport = updateAirport;
+
+const updateTimetableRec =
+    `update PR_TIMETABLE
+  set DEPARTURE_DATE = :DEPARTURE_DATE,
+    ARRIVAL_DATE = :ARRIVAL_DATE,
+    ID_AIRPORT_DEPARTURE = :ID_AIRPORT_DEPARTURE,
+    ID_AIRPORT_ARRIVAL = :ID_AIRPORT_ARRIVAL
+  where ID_TIMETABLE = :ID_TIMETABLE`;
+
+async function updateTimetable(air) {
+    const timetable = Object.assign({}, air);
+    const result = await database.simpleExecute(updateTimetableRec, timetable);
+
+    if (result.rowsAffected && result.rowsAffected === 1) {
+        return timetable;
+    } else {
+        return null;
+    }
+}
+
+module.exports.updateAirport = updateAirport;
