@@ -19,9 +19,10 @@ async function findInfoAboutFlight(context) {
 
 module.exports.findInfoAboutFlight = findInfoAboutFlight;
 
+// GET запрос для получения информации об авиакомпании по id
 
 const requestAirline =
-    `SELECT * FROM PR_AIRLINE;`;
+    `SELECT * FROM PR_AIRLINE`;
 
 async function findInfoAboutAirlineById(context) {
     let query = requestAirline;
@@ -34,3 +35,62 @@ async function findInfoAboutAirlineById(context) {
 }
 
 module.exports.findInfoAboutAirlineById = findInfoAboutAirlineById;
+
+const requestAirplane =
+    `SELECT * FROM PR_AIRPLANE`;
+
+async function findInfoAboutAirplaneById(context) {
+    let query = requestAirplane;
+    const binds = {};
+    binds.id_airplane = context.id;
+
+    query += `\nwhere ID_AIRPLANE = :id_airplane`;
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+module.exports.findInfoAboutAirplaneById = findInfoAboutAirplaneById;
+
+const requestAirport =
+    `SELECT * FROM PR_AIRPORT`;
+
+async function findInfoAboutAirportById(context) {
+    let query = requestAirport;
+    const binds = {};
+    binds.id_airport = context.id;
+
+    query += `\nwhere ID_AIRPORT = :id_airport`;
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+module.exports.findInfoAboutAirportById = findInfoAboutAirportById;
+
+
+
+async function getCountOfAirlineInDB(){
+    let query = `SELECT COUNT(*) FROM PR_AIRLINE`;
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+async function createAirline(air) {
+    let count = getCountOfAirlineInDB();
+    const createSql =
+        `insert into PR_AIRLINE (
+    ID_AIRLINE,
+    TITLE,
+    AVERAGE_TICKET_PRICE,
+    RATING,
+  ) values (
+    :${count+1},
+    :TITLE,
+    :AVERAGE_TICKET_PRICE,
+    :RATING,
+  )`;
+    const airline = Object.assign({}, air);
+    const result = await database.simpleExecute(createSql, airline);
+    return airline;
+}
+
+module.exports.createAirline = createAirline;

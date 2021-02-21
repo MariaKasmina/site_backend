@@ -17,11 +17,11 @@ async function getInfoAboutFlight(req, res, next) {
     }
 }
 
-//module.exports.getInfoAboutFlight = getInfoAboutFlight;
 
 async function getInfoAboutAirlineById(req, res, next){
     try {
         const context = {};
+        context.id = parseInt(req.query.id, 10);
         const rows = await fligth.findInfoAboutAirlineById(context);
         res.status(200).json(rows);
     } catch (err) {
@@ -29,9 +29,53 @@ async function getInfoAboutAirlineById(req, res, next){
     }
 }
 
-//module.exports.getInfoAboutAirlineById = getInfoAboutAirlineById;
+async function getInfoAboutAirplaneById(req, res, next){
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const rows = await fligth.findInfoAboutAirplaneById(context);
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function getInfoAboutAirportById(req, res, next){
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const rows = await fligth.findInfoAboutAirportById(context);
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
+
+// ADMIN APIS
+
+function getAirlineFromRec(req) {
+    return {
+        TITLE: req.body.title,
+        AVERAGE_TICKET_PRICE: req.body.average_ticket_price,
+        RATING: req.body.rating,
+    };
+}
+
+async function admAddAirline(req,res,next){
+    try {
+        let p = getAirlineFromRec(req);
+        p = await flight.createAirline(p);
+        res.status(201).json(p);
+    } catch (err) {
+        next(err);
+    }
+}
 
 module.exports = {
     getInfoAboutFlight,
     getInfoAboutAirlineById,
+    getInfoAboutAirplaneById,
+    getInfoAboutAirportById,
+    admAddAirline,
 }

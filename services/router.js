@@ -14,10 +14,23 @@ router.route('/passenger/:id?')
 router.route('/').get();
 
 router.route('/flight/msk/spb').get(flight.getInfoAboutFlight);
-router.route('/flight/airline/:id').get(flight.getInfoAboutAirlineById);
+router.route('/flight/airline/:id?').get(flight.getInfoAboutAirlineById);
+router.route('/flight/airplane/:id?').get(flight.getInfoAboutAirplaneById);
+router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
 
 
+//админские апишки
 
-// router.route('/baggage/:id?').get(); следующие апишки
+router.route('/admin/newairline/').post(flight.admAddAirline);
+router.route('/admin/newairport/').post();
+router.route('/admin/newtimetable').post();
+
+router.route('/admin/updairline/').put();
+router.route('/admin/updairport/').put();
+router.route('/admin/updtimetable').put();
+
+router.route('/admin/delairline/').delete();
+router.route('/admin/delairport/').delete();
+router.route('/admin/deltimetable').delete();
 
 module.exports = router;
