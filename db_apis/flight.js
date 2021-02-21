@@ -79,7 +79,7 @@ const createAir =
     :RATING
   )`;
 
-const createAirport =
+const createAirportRec =
     `insert into PR_AIRPORT (
     ID_AIRPORT,
     TITLE,
@@ -92,7 +92,7 @@ const createAirport =
     :CITY
   )`;
 
-const createTimetable =
+const createTimetableRec =
     `insert into PR_TIMETABLE (
     ID_TIMETABLE,
     DEPARTURE_DATE,
@@ -117,7 +117,7 @@ module.exports.createAirline = createAirline;
 
 async function createAirport(air) {
     const airport = Object.assign({}, air);
-    const result = await database.simpleExecute(createAirport, airport);
+    const result = await database.simpleExecute(createAirportRec, airport);
     return airport;
 }
 
@@ -125,7 +125,7 @@ module.exports.createAirport = createAirport;
 
 async function createTimetable(time) {
     const timetable = Object.assign({}, time);
-    const result = await database.simpleExecute(createTimetable, timetable);
+    const result = await database.simpleExecute(createTimetableRec, timetable);
     return timetable;
 }
 

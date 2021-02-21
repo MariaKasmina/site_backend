@@ -95,7 +95,7 @@ async function admAddAirline(req,res,next){
 async function admAddAirport(req,res,next){
     try {
         let p = getAirportFromRec(req);
-        p = await fligth.createAirline(p);
+        p = await fligth.createAirport(p);
         res.status(201).json(p);
     } catch (err) {
         next(err);
@@ -105,7 +105,7 @@ async function admAddAirport(req,res,next){
 async function admAddTimtable(req,res,next){
     try {
         let p = getTimetableFromRec(req);
-        p = await fligth.createAirline(p);
+        p = await fligth.createTimetable(p);
         res.status(201).json(p);
     } catch (err) {
         next(err);
@@ -119,5 +119,5 @@ module.exports = {
     getInfoAboutAirportById,
     admAddAirline,
     admAddAirport,
-    admAddTimtable,    
+    admAddTimtable,
 }

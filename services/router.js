@@ -32,7 +32,7 @@ route.route('/sso/signin').get(flight.signin);
 
 router.route('/admin/newairline/').post(flight.admAddAirline);
 router.route('/admin/newairport/').post(flight.admAddAirport);
-router.route('/admin/newtimetable/').post(flight.admAddTimtable);
+router.route('/admin/newtimetable/').post(flight.admAddTimetable);
 
 router.route('/admin/updairline/').put();
 router.route('/admin/updairport/').put();
