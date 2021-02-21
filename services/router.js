@@ -24,9 +24,9 @@ router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
 
 // авторизационные апи
 // кладет в базу данные нового пользователя
-router.route('/sso/signup').post(flight.signup);
+//router.route('/sso/signup').post(flight.signup);
 // достает из базы данные пользователя
-route.route('/sso/signin').get(flight.signin);
+//route.route('/sso/signin').get(flight.signin);
 
 //админские апишки
 
@@ -34,12 +34,12 @@ router.route('/admin/newairline/').post(flight.admAddAirline);
 router.route('/admin/newairport/').post(flight.admAddAirport);
 router.route('/admin/newtimetable/').post(flight.admAddTimetable);
 
-router.route('/admin/updairline/').put();
-router.route('/admin/updairport/').put();
-router.route('/admin/updtimetable/').put();
+//router.route('/admin/updairline/').put();
+//router.route('/admin/updairport/').put();
+//router.route('/admin/updtimetable/').put();
 
-router.route('/admin/delairline/').delete();
-router.route('/admin/delairport/').delete();
-router.route('/admin/deltimetable/').delete();
+//router.route('/admin/delairline/').delete();
+//router.route('/admin/delairport/').delete();
+//router.route('/admin/deltimetable/').delete();
 
 module.exports = router;

@@ -75,8 +75,8 @@ function getAirportFromRec(req) {
 function getTimetableFromRec(req) {
     return {
         ID_TIMETABLE: req.body.id,
-        DEPARTURE_DATE: req.body.date,
-        ARRIVAL_DATE: req.body.date,
+        DEPARTURE_DATE: req.body.date_departure,
+        ARRIVAL_DATE: req.body.date_arrival,
         ID_AIRPORT_DEPARTURE: req.body.id_airport_departure,
         ID_AIRPORT_ARRIVAL: req.body.id_airport_arrival,
     };
