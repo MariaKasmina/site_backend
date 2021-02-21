@@ -26,7 +26,7 @@ const requestAirline =
 async function findInfoAboutAirlineById(context) {
     let query = requestAirline;
     const binds = {};
-    binds.id_airline = context.id_airline;
+    binds.id_airline = context.id;
 
     query += `\nwhere id_airline = :id_airline`;
     const result = await database.simpleExecute(query, binds);

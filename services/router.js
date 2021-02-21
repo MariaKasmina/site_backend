@@ -14,7 +14,7 @@ router.route('/passenger/:id?')
 router.route('/').get();
 
 router.route('/flight/msk/spb').get(flight.getInfoAboutFlight);
-router.route('/flight/msk/spb/:id_airline').get(flight.getInfoAboutAirlineById);
+router.route('/flight/airline/:id').get(flight.getInfoAboutAirlineById);
 
 
 
