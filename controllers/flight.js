@@ -159,6 +159,52 @@ async function updTimetable(req, res, next) {
     }
 }
 
+async function deleteAirlineById(req, res, next) {
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const success = await fligth.deleteAirline(context);
+        if (success) {
+            res.status(204).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function deleteAirportById(req, res, next) {
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const success = await fligth.deleteAirport(context);
+        if (success) {
+            res.status(204).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function deleteTimetableById(req, res, next) {
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const success = await fligth.deleteTimetable(context);
+        if (success) {
+            res.status(204).end();
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+
 
 module.exports = {
     getInfoAboutFlight,
@@ -170,5 +216,8 @@ module.exports = {
     admAddTimtable,
     updAirline,
     updAirport,
-    updTimetable
+    updTimetable,
+    deleteAirlineById,
+    deleteAirportById,
+    deleteTimetableById
 }

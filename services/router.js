@@ -38,8 +38,8 @@ router.route('/admin/updairline/').put(flight.updAirline);
 router.route('/admin/updairport/').put(flight.updAirport);
 router.route('/admin/updtimetable/').put(flight.updTimetable);
 
-//router.route('/admin/delairline/').delete();
-//router.route('/admin/delairport/').delete();
-//router.route('/admin/deltimetable/').delete();
+router.route('/admin/delairline/:id?').delete(flight.deleteAirlineById);
+router.route('/admin/delairport/:id?').delete(flight.deleteAirportById);
+router.route('/admin/deltimetable/:id?').delete(flight.deleteTimetableById);
 
 module.exports = router;

@@ -192,3 +192,49 @@ async function updateTimetable(air) {
 }
 
 module.exports.updateTimetable = updateTimetable;
+
+const deleteAirlineRec =
+    `DELETE FROM PR_AIRLINE`
+
+async function deleteAirline(context) {
+    let query = deleteAirlineRec;
+    const binds = {};
+    binds.id_airline = context.id;
+
+    query += `\nwhere ID_AIRLINE = :id_airline`;
+    const result = await database.simpleExecute(query, binds);
+    return result;
+}
+
+module.exports.deleteAirline = deleteAirline;
+
+const deleteAirportRec =
+    `DELETE FROM PR_AIRPORT`
+
+async function deleteAirport(context) {
+    let query = deleteAirportRec;
+    const binds = {};
+    binds.id_airport = context.id;
+
+    query += `\nwhere ID_AIRPORT = :id_airport`;
+    const result = await database.simpleExecute(query, binds);
+    return result;
+}
+
+module.exports.deleteAirport = deleteAirport;
+
+const deleteTimetableRec =
+    `DELETE FROM PR_TIMETABLE`
+
+async function deleteTimetable(context) {
+    let query = deleteTimetableRec;
+    const binds = {};
+    binds.id_timetable = context.id;
+
+    query += `\nwhere ID_TIMETABLE = :id_timetable`;
+    const result = await database.simpleExecute(query, binds);
+    return result;
+}
+
+module.exports.deleteTimetable = deleteTimetable;
+
