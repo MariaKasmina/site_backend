@@ -191,4 +191,4 @@ async function updateTimetable(air) {
     }
 }
 
-module.exports.updateAirport = updateAirport;
+module.exports.updateTimetable = updateTimetable;
