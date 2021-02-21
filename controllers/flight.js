@@ -56,16 +56,56 @@ async function getInfoAboutAirportById(req, res, next){
 
 function getAirlineFromRec(req) {
     return {
+        ID_AIRLINE: req.body.id,
         TITLE: req.body.title,
         AVERAGE_TICKET_PRICE: req.body.average_ticket_price,
-        RATING: req.body.rating,
+        RATING: req.body.rating
+    };
+}
+
+function getAirportFromRec(req) {
+    return {
+        ID_AIRPORT: req.body.id,
+        TITLE: req.body.title,
+        COUNTRY: req.body.country,
+        CITY: req.body.city
+    };
+}
+
+function getTimetableFromRec(req) {
+    return {
+        ID_TIMETABLE: req.body.id,
+        DEPARTURE_DATE: req.body.date,
+        ARRIVAL_DATE: req.body.date,
+        ID_AIRPORT_DEPARTURE: req.body.id_airport_departure,
+        ID_AIRPORT_ARRIVAL: req.body.id_airport_arrival,
     };
 }
 
 async function admAddAirline(req,res,next){
     try {
         let p = getAirlineFromRec(req);
-        p = await flight.createAirline(p);
+        p = await fligth.createAirline(p);
+        res.status(201).json(p);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function admAddAirport(req,res,next){
+    try {
+        let p = getAirportFromRec(req);
+        p = await fligth.createAirline(p);
+        res.status(201).json(p);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function admAddTimtable(req,res,next){
+    try {
+        let p = getTimetableFromRec(req);
+        p = await fligth.createAirline(p);
         res.status(201).json(p);
     } catch (err) {
         next(err);
@@ -78,4 +118,6 @@ module.exports = {
     getInfoAboutAirplaneById,
     getInfoAboutAirportById,
     admAddAirline,
+    admAddAirport,
+    admAddTimtable,    
 }

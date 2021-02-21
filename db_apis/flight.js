@@ -66,31 +66,67 @@ async function findInfoAboutAirportById(context) {
 
 module.exports.findInfoAboutAirportById = findInfoAboutAirportById;
 
-
-
-async function getCountOfAirlineInDB(){
-    let query = `SELECT COUNT(*) FROM PR_AIRLINE`;
-    const result = await database.simpleExecute(query, binds);
-    return result.rows;
-}
-
-async function createAirline(air) {
-    let count = getCountOfAirlineInDB();
-    const createSql =
-        `insert into PR_AIRLINE (
+const createAir =
+    `insert into PR_AIRLINE (
     ID_AIRLINE,
     TITLE,
     AVERAGE_TICKET_PRICE,
-    RATING,
-  ) values (
-    :${count+1},
+    RATING
+  ) VALUES (
+    :ID_AIRLINE,
     :TITLE,
     :AVERAGE_TICKET_PRICE,
-    :RATING,
+    :RATING
   )`;
+
+const createAirport =
+    `insert into PR_AIRPORT (
+    ID_AIRPORT,
+    TITLE,
+    COUNTRY,
+    CITY
+  ) VALUES (
+    :ID_AIRPORT,
+    :TITLE,
+    :COUNTRY,
+    :CITY
+  )`;
+
+const createTimetable =
+    `insert into PR_TIMETABLE (
+    ID_TIMETABLE,
+    DEPARTURE_DATE,
+    ARRIVAL_DATE,
+    ID_AIRPORT_DEPARTURE,
+    ID_AIRPORT_ARRIVAL
+  ) VALUES (
+    :ID_TIMETABLE,
+    :DEPARTURE_DATE,
+    :ARRIVAL_DATE,
+    :ID_AIRPORT_DEPARTURE,
+    :ID_AIRPORT_ARRIVAL
+  )`;
+
+async function createAirline(air) {
     const airline = Object.assign({}, air);
-    const result = await database.simpleExecute(createSql, airline);
+    const result = await database.simpleExecute(createAir, airline);
     return airline;
 }
 
 module.exports.createAirline = createAirline;
+
+async function createAirport(air) {
+    const airport = Object.assign({}, air);
+    const result = await database.simpleExecute(createAirport, airport);
+    return airport;
+}
+
+module.exports.createAirport = createAirport;
+
+async function createTimetable(time) {
+    const timetable = Object.assign({}, time);
+    const result = await database.simpleExecute(createTimetable, timetable);
+    return timetable;
+}
+
+module.exports.createTimetable = createTimetable;
