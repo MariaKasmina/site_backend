@@ -13,7 +13,8 @@ router.route('/passenger/:id?')
     .post(passenger.post);
 router.route('/').get();
 
-router.route('/flight/').get(flight.get);
+router.route('/flight/msk/spb').get(flight.getInfoAboutFlight);
+router.route('/flight/msk/spb/:id_airline').get(flight.getInfoAboutAirlineById);
 
 
 
