@@ -51,6 +51,17 @@ async function getInfoAboutAirportById(req, res, next){
     }
 }
 
+async function getInfoAboutTimetableById(req, res, next){
+    try {
+        const context = {};
+        context.id = parseInt(req.query.id, 10);
+        const rows = await fligth.findInfoAboutTimetableById(context);
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
 
 // ADMIN APIS
 
@@ -211,6 +222,7 @@ module.exports = {
     getInfoAboutAirlineById,
     getInfoAboutAirplaneById,
     getInfoAboutAirportById,
+    getInfoAboutTimetableById,
     admAddAirline,
     admAddAirport,
     admAddTimtable,

@@ -36,6 +36,21 @@ async function findInfoAboutAirlineById(context) {
 
 module.exports.findInfoAboutAirlineById = findInfoAboutAirlineById;
 
+const requestTimetable =
+    `SELECT * FROM PR_TIMETABLE`;
+
+async function findInfoAboutTimetableById(context) {
+    let query = requestTimetable;
+    const binds = {};
+    binds.id_timetable = context.id;
+
+    query += `\nwhere id_timetable = :id_timetable`;
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+module.exports.findInfoAboutTimetableById = findInfoAboutTimetableById;
+
 const requestAirplane =
     `SELECT * FROM PR_AIRPLANE`;
 

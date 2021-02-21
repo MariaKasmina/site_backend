@@ -21,6 +21,8 @@ router.route('/flight/airline/:id?').get(flight.getInfoAboutAirlineById);
 router.route('/flight/airplane/:id?').get(flight.getInfoAboutAirplaneById);
 // достает из базы данные об аэропорте по id
 router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
+// достает данные о строке в расписании по id
+router.route('/flight/timetable/:id?').get(flight.getInfoAboutTimetableById);
 
 // авторизационные апи
 // кладет в базу данные нового пользователя
