@@ -17,7 +17,7 @@ async function getInfoAboutFlight(req, res, next) {
     }
 }
 
-module.exports.getInfoAboutFlight = getInfoAboutFlight;
+//module.exports.getInfoAboutFlight = getInfoAboutFlight;
 
 async function getInfoAboutAirlineById(req, res, next){
     try {
@@ -29,4 +29,9 @@ async function getInfoAboutAirlineById(req, res, next){
     }
 }
 
-module.exports.getInfoAboutAirlineById = getInfoAboutAirlineById;
+//module.exports.getInfoAboutAirlineById = getInfoAboutAirlineById;
+
+module.exports = {
+    getInfoAboutFlight,
+    getInfoAboutAirlineById,
+}
