@@ -216,7 +216,6 @@ async function deleteTimetableById(req, res, next) {
 }
 
 
-
 module.exports = {
     getInfoAboutFlight,
     getInfoAboutAirlineById,

@@ -6,6 +6,7 @@ const express = require('express');
 const router = new express.Router();
 const passenger = require('../controllers/passenger.js');
 const flight = require('../controllers/flight');
+const sso = require('../controllers/user.js');
 
 // знак ? после id указывает на его необязательность
 router.route('/passenger/:id?')
@@ -26,9 +27,9 @@ router.route('/flight/timetable/:id?').get(flight.getInfoAboutTimetableById);
 
 // авторизационные апи
 // кладет в базу данные нового пользователя
-//router.route('/sso/signup').post(flight.signup);
+router.route('/sso/signup').post(sso.signup);
 // достает из базы данные пользователя
-//route.route('/sso/signin').get(flight.signin);
+router.route('/sso/signin/:login?').get(sso.signin);
 
 //админские апишки
 
