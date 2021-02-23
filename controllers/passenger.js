@@ -1,5 +1,6 @@
 const passenger = require('../db_apis/passenger.js');
-let lastIndex = 7; // индекс последнего существующего в базе элемента-пассажира
+
+
 /**
  * GET запрос
  * @param req
@@ -11,8 +12,6 @@ async function get(req, res, next) {
     try {
         const context = {};
         context.id = parseInt(req.query.id, 10); // получаем индекс пассажира через query-параметры
-        // context.id = parseInt(req.params.id, 10);
-
         const rows = await passenger.find(context);
         if (req.query.id) {
             if (rows.length === 1) {
@@ -47,7 +46,6 @@ async function post(req, res, next) {
     try {
         let p = getPassengerFromRec(req);
         p = await passenger.create(p);
-        lastIndex += 1;
         res.status(201).json(p);
     } catch (err) {
         next(err);

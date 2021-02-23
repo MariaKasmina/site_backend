@@ -7,6 +7,7 @@ const router = new express.Router();
 const passenger = require('../controllers/passenger.js');
 const flight = require('../controllers/flight');
 const sso = require('../controllers/user.js');
+const booking = require('../controllers/booking');
 
 // знак ? после id указывает на его необязательность
 router.route('/passenger/:id?')
@@ -24,6 +25,8 @@ router.route('/flight/airplane/:id?').get(flight.getInfoAboutAirplaneById);
 router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
 // достает данные о строке в расписании по id
 router.route('/flight/timetable/:id?').get(flight.getInfoAboutTimetableById);
+// 
+router.route('/createbooking').post(booking.postIntoPRBooking);
 
 // авторизационные апи
 // кладет в базу данные нового пользователя
