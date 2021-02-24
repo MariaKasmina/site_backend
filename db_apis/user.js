@@ -26,3 +26,15 @@ async function seachUser(req) {
 }
 
 module.exports.seachUser = seachUser;
+
+const requestUsers =
+    `SELECT * FROM PR_SSO`;
+
+async function findInfoAboutUsers(context) {
+    let query = requestUsers;
+    const binds = {};
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+module.exports.findInfoAboutUsers = findInfoAboutUsers;

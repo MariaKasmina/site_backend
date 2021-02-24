@@ -25,14 +25,18 @@ router.route('/flight/airplane/:id?').get(flight.getInfoAboutAirplaneById);
 router.route('/flight/airport/:id?').get(flight.getInfoAboutAirportById);
 // достает данные о строке в расписании по id
 router.route('/flight/timetable/:id?').get(flight.getInfoAboutTimetableById);
-// 
+// оформление билета
 router.route('/createbooking').post(booking.postIntoPRBooking);
+// достать все записи из PR_BOOKING
+router.route('/booking/items').get(booking.getItemsFromBooking);
 
 // авторизационные апи
 // кладет в базу данные нового пользователя
 router.route('/sso/signup').post(sso.signup);
 // достает из базы данные пользователя
 router.route('/sso/signin/:login?').get(sso.signin);
+// достает информацию о всех пользователях в PR_SSO
+router.route('/sso/users').get(sso.getUsers);
 
 //админские апишки
 

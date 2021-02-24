@@ -23,3 +23,15 @@ async function postIntoPRBooking(req, res, next) {
 }
 
 module.exports.postIntoPRBooking = postIntoPRBooking;
+
+async function getItemsFromBooking(req, res, next){
+    try {
+        const context = {};
+        const rows = await booking.getItems(context);
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
+module.exports.getItemsFromBooking = getItemsFromBooking;

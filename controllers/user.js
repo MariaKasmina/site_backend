@@ -36,7 +36,18 @@ async function signin(req, res, next) {
     }
 }
 
+async function getUsers(req, res, next){
+    try {
+        const context = {};
+        const rows = await sso.findInfoAboutUsers(context);
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     signup,
-    signin
+    signin,
+    getUsers
 }

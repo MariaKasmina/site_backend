@@ -26,3 +26,15 @@ async function createBooking(book) {
 }
 
 module.exports.createBooking = createBooking;
+
+const requestAirplane =
+    `SELECT * FROM PR_BOOKING`;
+
+async function getItems(context) {
+    let query = requestAirplane;
+    const binds = {};
+    const result = await database.simpleExecute(query, binds);
+    return result.rows;
+}
+
+module.exports.getItems = getItems;
