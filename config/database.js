@@ -1,7 +1,7 @@
 module.exports = {
     hrPool: {
         user: 'MARIA',
-        password: '12345',
+        password: '123456f',
         connectString: 'localhost',
         poolMin: 10,
         poolMax: 10,
